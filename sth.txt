@@ -1,0 +1,4 @@
+up --build
+
+service closd
+down -v

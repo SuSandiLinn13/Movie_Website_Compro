@@ -1,0 +1,27 @@
+services:
+  nextjs:
+    container_name: nextjs
+    build:
+      context: ./nextjs-app
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./nextjs-app:/src
+      - /src/node_modules
+    working_dir: /src
+    command: npm run dev
+
+  postgresql:
+    image: postgres:13-alpine
+    container_name: linnlinn_postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: linnlinn
+      POSTGRES_PASSWORD: linnlinn
+      POSTGRES_DB: advcompro_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
